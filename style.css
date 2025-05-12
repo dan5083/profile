@@ -1,0 +1,199 @@
+/* Full reset & aquarium vibe */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #ffffff;
+  position: relative;
+}
+
+/* Animated Background Layer - Fish & Fridge Switch */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: contain; /* ✅ Full image always shown */
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  z-index: -2;
+  animation: switchBackground 1.5s infinite steps(1);
+}
+
+@keyframes switchBackground {
+  0% {
+    background-image: url('images/fish-fridge-1.png');
+  }
+  50% {
+    background-image: url('images/fish-fridge-2.png');
+  }
+  100% {
+    background-image: url('images/fish-fridge-1.png');
+  }
+}
+
+.seaweed-frame {
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: auto;
+  z-index: -1;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.seaweed-frame img {
+  height: 100vh;
+  width: auto;
+  object-fit: contain;
+  animation: seaweedCycle 2s infinite steps(1);
+  display: block;
+}
+
+.seaweed-frame.left {
+  left: 0;
+}
+
+.seaweed-frame.right {
+  right: 0;
+}
+
+.seaweed-frame.right img {
+  transform: scaleX(-1);
+}
+
+@keyframes seaweedCycle {
+  0%, 100% {
+    content: url('images/seaweed-sparse.png');
+  }
+  50% {
+    content: url('images/seaweed-dense.png');
+  }
+}
+
+/* Profile Card */
+.profile-card {
+  position: absolute;
+  top: 20px;
+  left: 320px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(6px);
+  border-radius: 20px;
+  padding: 40px;
+  text-align: center;
+  width: 350px;
+  box-shadow: 0 0 25px rgba(0, 255, 231, 0.3);
+  z-index: 2;
+}
+
+/* Typography */
+h1 {
+  font-size: 28px;
+  margin-bottom: 5px;
+}
+
+h2 {
+  font-size: 18px;
+  color: #c0f0ff;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #e1fcff;
+  margin-bottom: 25px;
+}
+
+/* Button */
+.btn {
+  background: #00ffe7;
+  color: #003944;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 255, 231, 0.6);
+}
+
+.btn:hover {
+  background: #00c6fb;
+  color: #ffffff;
+}
+
+/* Social Links */
+.social-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+  padding: 0;
+}
+
+.social-links li a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.social-links li a:hover {
+  color: #00ffe7;
+}
+
+/* -------------------------------------- */
+/* ✅ Responsive Enhancements for Mobile  */
+/* -------------------------------------- */
+
+@media (max-width: 768px) {
+  .profile-card {
+    position: relative;
+    top: auto;
+    left: auto;
+    margin: 20px auto;
+    width: 90vw;
+    padding: 30px;
+  }
+
+  .seaweed-frame img {
+    height: 100vh;
+    width: auto;
+    max-width: 50vw;
+  }
+
+  .btn {
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  h2 {
+    font-size: 16px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  .social-links {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
